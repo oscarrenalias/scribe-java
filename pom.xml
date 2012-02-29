@@ -38,9 +38,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:http://github.com/fernandezpablo85/scribe-java.git</connection>
-    <developerConnection>scm:http://github.com/fernandezpablo85/scribe-java.git</developerConnection>
-    <url>http://github.com/fernandezpablo85/scribe-java.git</url>
+    <connection>scm:http://github.com/crispywalrus/scribe-java.git</connection>
+    <developerConnection>scm:http://github.com/crispywalrus/scribe-java.git</developerConnection>
+    <url>http://github.com/crispywalrus/scribe-java.git</url>
   </scm>
 
   <dependencies>
