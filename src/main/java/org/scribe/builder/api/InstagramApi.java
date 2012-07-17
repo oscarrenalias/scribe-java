@@ -1,3 +1,5 @@
+package org.scribe.builder.api;
+
 import org.scribe.builder.api.DefaultApi20;
 import org.scribe.extractors.AccessTokenExtractor;
 import org.scribe.extractors.JsonTokenExtractor;
