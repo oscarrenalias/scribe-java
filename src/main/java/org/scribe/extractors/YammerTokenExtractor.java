@@ -37,7 +37,7 @@ public class YammerTokenExtractor implements AccessTokenExtractor {
 		try {
 			JsonNode rootNode = (new ObjectMapper()).readTree(response);
 			return(new Token(rootNode.get("access_token").get("token").asText(), response));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new OAuthException("Cannot extract an access token from Yammer OAuth 2.0. Response was: " + response);
 		}
 	}
