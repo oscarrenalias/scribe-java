@@ -54,6 +54,17 @@
       <version>4.10</version>
       <scope>test</scope>
     </dependency>
+    <!-- it's easier to parse JSON with this... -->
+    <dependency>
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-mapper-asl</artifactId>
+        <version>1.9.9</version>
+    </dependency>
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-core-asl</artifactId>
+          <version>1.9.9</version>
+      </dependency>
   </dependencies>
 
   <build>
