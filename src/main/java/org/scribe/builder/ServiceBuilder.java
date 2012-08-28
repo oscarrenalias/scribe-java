@@ -53,7 +53,7 @@ public class ServiceBuilder
     Api api;
     try
     {
-      api = apiClass.newInstance();  
+      api = apiClass.newInstance();
     }
     catch(Exception e)
     {
@@ -72,9 +72,9 @@ public class ServiceBuilder
    */
   public ServiceBuilder provider(Api api)
   {
-	  Preconditions.checkNotNull(api, "Api cannot be null");
-	  this.api = api;
-	  return this;
+    Preconditions.checkNotNull(api, "Api cannot be null");
+    this.api = api;
+    return this;
   }
 
   /**

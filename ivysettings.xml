@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivysettings>
+  <properties file="${project.dir}/ivysettings.properties"/>
+  <properties file="${ivy.settings.dir}/ivysettings.properties"/>
+
+  <settings defaultResolver="default"/>
+  <caches defaultCacheDir="${user.home}/.ivy2/cache"/>
+
+  <resolvers>
+    <ibiblio name="maven" root="http://repo1.maven.org/maven2" m2compatible="true"/>
+    <ibiblio name="scala-tools" root="http://scala-tools.org/repo-releases/" m2compatible="true"/>
+    <ibiblio name="local-m2" root="file:${user.home}/.m2/repository" m2compatible="true" changingPattern=".*-SNAPSHOT"/>
+    <filesystem name="local-m2-publish" m2compatible="true" local="true">
+      <artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+    </filesystem>
+    <ibiblio name="Typesafe Respository" root="http://repo.typesafe.com/typesafe/releases" m2compatible="true"/>
+
+    <chain name="default">
+      <resolver ref="maven"/>
+      <resolver ref="scala-tools"/>
+      <resolver ref="local-m2"/>
+    </chain>
+  </resolvers>
+
+</ivysettings>
