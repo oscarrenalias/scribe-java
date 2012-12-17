@@ -8,6 +8,7 @@ public class FacebookApi extends DefaultApi20
 {
     private static final String AUTHORIZE_URL = "https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s";
     private static final String SCOPED_AUTHORIZE_URL = AUTHORIZE_URL + "&scope=%s";
+    private static final String FORCE_AUTH_PARAMS = "&auth_type=reauthenticate";
 
     @Override
     public String getAccessTokenEndpoint()
@@ -21,14 +22,18 @@ public class FacebookApi extends DefaultApi20
         Preconditions.checkValidUrl(config.getCallback(), "Must provide a valid url as callback. Facebook does not support OOB");
 
         // Append scope if present
-        if(config.hasScope())
-        {
-            return String.format(SCOPED_AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()), OAuthEncoder.encode(config.getScope()));
+        String authorizationUrl;
+        if(config.hasScope()) {
+            authorizationUrl = String.format(SCOPED_AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()), OAuthEncoder.encode(config.getScope()));
         }
-        else
-        {
-            return String.format(AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()));
+        else {
+            authorizationUrl = String.format(AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()));
         }
+
+        if(config.hasForceAuth())
+            authorizationUrl = authorizationUrl + FORCE_AUTH_PARAMS;
+
+        return(authorizationUrl);
     }
 
   @Override

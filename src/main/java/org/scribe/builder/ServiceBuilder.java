@@ -23,6 +23,8 @@ public class ServiceBuilder
   private String scope;
   private SignatureType signatureType;
   private String grantType;
+  private boolean forceAuth;
+
   private OutputStream debugStream;
 
   /**
@@ -167,6 +169,11 @@ public class ServiceBuilder
     this.grantType = grantType;
     return this;	  
   }
+
+    public ServiceBuilder forceAuth(boolean forceAuth) {
+        this.forceAuth = forceAuth;
+        return(this);
+    }
   
   /**
    * Returns the fully configured {@link OAuthService}
@@ -178,6 +185,8 @@ public class ServiceBuilder
     Preconditions.checkNotNull(api, "You must specify a valid api through the provider() method");
     Preconditions.checkEmptyString(apiKey, "You must provide an api key");
     Preconditions.checkEmptyString(apiSecret, "You must provide an api secret");
-    return api.createService(new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, debugStream, grantType));
+
+    OAuthConfig config = new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, debugStream, grantType, forceAuth);
+    return api.createService(config);
   }
 }

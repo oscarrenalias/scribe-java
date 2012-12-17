@@ -11,11 +11,17 @@ public class GoogleApi20
 {
     private static final String AUTHORIZATION_URL =
         "https://accounts.google.com/o/oauth2/auth?client_id=%s&redirect_uri=%s&scope=%s&response_type=code";
+    private static final String FORCE_AUTH = "&approval_prompt=force";
 
     @Override
     public String getAuthorizationUrl( OAuthConfig config )
     {
-        return String.format( AUTHORIZATION_URL, config.getApiKey(), config.getCallback(), config.getScope() );
+        String authorizationUrl;
+        authorizationUrl = String.format( AUTHORIZATION_URL, config.getApiKey(), config.getCallback(), config.getScope() );
+        if(config.getForceAuth())
+            authorizationUrl = authorizationUrl + FORCE_AUTH;
+
+        return(authorizationUrl);
     }
 
     @Override

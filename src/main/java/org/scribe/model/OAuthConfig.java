@@ -15,6 +15,7 @@ public class OAuthConfig
   private final SignatureType signatureType;
   private final String scope;
   private final String grantType;
+  private final boolean forceAuth;
   private final OutputStream debugStream;
 
   public OAuthConfig(String key, String secret )
@@ -24,11 +25,11 @@ public class OAuthConfig
 
   public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, OutputStream stream)
   {
-    this(key, secret, callback, type, scope, stream, null);
+    this(key, secret, callback, type, scope, stream, null, false);
   }
 
   public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, OutputStream stream,
-                     String grantType)
+                     String grantType, boolean forceAuth)
   {
     this.apiKey = key;
     this.apiSecret = secret;
@@ -36,6 +37,7 @@ public class OAuthConfig
     this.signatureType = (type != null) ? type : SignatureType.Header;
     this.scope = scope;
     this.grantType = grantType;
+    this.forceAuth = forceAuth;
     this.debugStream = stream;
   }
 
@@ -69,6 +71,10 @@ public class OAuthConfig
     return grantType;
   }
 
+  public boolean getForceAuth() {
+      return forceAuth;
+  }
+
   public boolean hasScope()
   {
     return scope != null;
@@ -77,6 +83,10 @@ public class OAuthConfig
   public boolean hasGrantType()
   {
     return grantType != null;
+  }
+
+  public boolean hasForceAuth() {
+      return(forceAuth);
   }
 
   public void log(String message)
@@ -94,4 +104,18 @@ public class OAuthConfig
       }
     }
   }
+
+    @Override
+    public String toString() {
+        return "OAuthConfig{" +
+                "apiKey='" + apiKey + '\'' +
+                ", apiSecret='" + apiSecret + '\'' +
+                ", callback='" + callback + '\'' +
+                ", signatureType=" + signatureType +
+                ", scope='" + scope + '\'' +
+                ", grantType='" + grantType + '\'' +
+                ", forceAuth=" + forceAuth +
+                ", debugStream=" + debugStream +
+                '}';
+    }
 }

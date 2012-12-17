@@ -86,7 +86,14 @@ public class ServiceBuilderTest
     assertEquals(ApiMock.config.getApiSecret(), "secret");
     assertEquals(ApiMock.config.getGrantType(), "client_credentials");
   }
-  
+
+  @Test
+  public void shouldAcceptAForceAuth() {
+      builder.provider(ApiMock.class).apiKey("key").apiSecret("secret").forceAuth(true).build();
+      assertEquals(ApiMock.config.getApiKey(), "key");
+      assertEquals(ApiMock.config.getApiSecret(), "secret");
+      assertEquals(ApiMock.config.getForceAuth(), true);
+  }
 
   public static class ApiMock implements Api
   {
